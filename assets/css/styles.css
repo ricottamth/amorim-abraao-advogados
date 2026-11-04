@@ -369,7 +369,9 @@ body.modal-open { overflow: hidden; }
 @media (max-width: 1100px) {
   .nav-list { gap: 22px; }
   .areas-grid { grid-template-columns: 1fr 1fr; }
-  .footer-grid { grid-template-columns: 1fr 1fr; }
+  /* tablet/notebook pequeno: marca centralizada numa linha própria, 3 colunas iguais abaixo */
+  .footer-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 40px 32px; }
+  .footer-brand { grid-column: 1 / -1; justify-self: center; padding-bottom: 32px; border-bottom: 1px solid var(--line-dark); width: 100%; }
 }
 
 @media (max-width: 960px) {
@@ -397,6 +399,9 @@ body.modal-open { overflow: hidden; }
   .press-item { grid-template-columns: auto 1fr; }
   .press-title, .press-more { grid-column: 1 / -1; }
   .map { height: 360px; }
+  /* tablet: navegação e áreas lado a lado; contato em linha inteira (o e-mail não quebra) */
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+  .footer-grid > div:last-child { grid-column: 1 / -1; }
 }
 
 @media (max-width: 640px) {
@@ -404,7 +409,6 @@ body.modal-open { overflow: hidden; }
   /* rodapé: marca e contato em largura total; navegação e áreas lado a lado (evita um bloco escuro muito alto) */
   .footer-grid { grid-template-columns: 1fr 1fr; gap: 36px 24px; padding-bottom: 40px; }
   .footer-brand, .footer-grid > div:last-child { grid-column: 1 / -1; }
-  .footer-brand { justify-self: center; }
   .hero-actions .btn, .cta-actions .btn { width: 100%; }
   .cta-actions { width: 100%; }
   .hero-areas li + li::before { margin: 0 10px; }
