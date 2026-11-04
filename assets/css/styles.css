@@ -151,12 +151,17 @@ em { font-style: italic; }
 .office-photo figcaption { margin-top: 12px; font-size: .75rem; color: var(--muted); letter-spacing: .02em; }
 .office-copy { display: grid; gap: 22px; align-content: start; padding-top: 8px; }
 .office-copy > p:not(.lead) { color: var(--text); max-width: 60ch; }
-.seals { margin-top: 24px; display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
-.seal { display: flex; gap: 16px; padding: 24px 20px 24px 0; }
-.seal + .seal { padding-left: 24px; border-left: 1px solid var(--line); }
-.seal-icon { flex: none; display: grid; place-items: center; width: 44px; height: 44px; border: 1px solid var(--gold); border-radius: 50%; color: var(--gold-deep); }
+.seals { margin-top: 24px; display: grid; grid-template-columns: 1fr; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.seal { display: flex; align-items: center; gap: 20px; padding: 22px 0; }
+.seal + .seal { border-top: 1px solid var(--line); }
+.seal-icon {
+  flex: none; position: relative; display: grid; place-items: center; width: 56px; height: 56px;
+  border: 1px solid var(--gold); border-radius: 50%; color: var(--gold-deep); background: var(--cream);
+}
+.seal-icon::after { content: ""; position: absolute; inset: 4px; border: 1px solid rgba(232, 200, 139, .45); border-radius: 50%; }
+.seal-icon .icon { width: 26px; height: 26px; stroke-width: 1.25; }
 .seal strong { display: block; font-family: var(--serif); font-size: 1.2rem; font-weight: 600; color: var(--ink); line-height: 1.25; }
-.seal span { display: block; margin-top: 2px; font-size: .875rem; color: var(--muted); line-height: 1.5; }
+.seal div > span { display: block; margin-top: 2px; font-size: .875rem; color: var(--muted); line-height: 1.5; }
 
 /* Áreas */
 .areas { background: var(--cream); }
@@ -385,8 +390,7 @@ body.modal-open { overflow: hidden; }
 }
 
 @media (max-width: 640px) {
-  .areas-grid, .values-list, .seals, .footer-grid { grid-template-columns: 1fr; }
-  .seal + .seal { padding-left: 0; border-left: 0; border-top: 1px solid var(--line); }
+  .areas-grid, .values-list, .footer-grid { grid-template-columns: 1fr; }
   .hero-actions .btn, .cta-actions .btn { width: 100%; }
   .cta-actions { width: 100%; }
   .hero-areas li + li::before { margin: 0 10px; }
