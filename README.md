@@ -16,7 +16,10 @@ Abra http://127.0.0.1:5540. Na Vercel, `api/noticias.js` vira automaticamente o 
 - STF: https://noticias.stf.jus.br/feed/?post_type=postsnoticias
 - STJ: https://res.stj.jus.br/hrestp-c-portalp/RSS.xml
 
-Se um feed falhar, o site mostra um link para o portal do tribunal. Para mudar a quantidade, altere `LIMIT`.
+O firewall do STJ bloqueia servidores em nuvem (Vercel), então, quando a API volta sem notícias do STJ,
+o navegador do visitante lê o RSS do STJ diretamente (o feed libera CORS). Se ainda assim falhar,
+o site mostra um link para o portal do tribunal. As notícias só são buscadas quando a seção se aproxima da tela
+e ficam 30 min em cache na sessão. Para mudar a quantidade, altere `LIMIT`.
 
 ## Estrutura
 

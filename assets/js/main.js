@@ -139,10 +139,59 @@ if (courtLists.length) {
       ul.append(li);
     });
   };
-  fetch('/api/noticias')
-    .then((r) => (r.ok ? r.json() : Promise.reject(r.status)))
-    .then((data) => courtLists.forEach((ul) => render(ul, data[ul.dataset.court], ul.dataset.court)))
-    .catch(() => courtLists.forEach((ul) => render(ul, [], ul.dataset.court)));
+  /* Plano B no navegador: o firewall do STJ bloqueia servidores em nuvem, mas o RSS dele
+     libera CORS. Se a API vier sem STJ, o próprio navegador do visitante lê o feed. */
+  const STJ_RSS = 'https://res.stj.jus.br/hrestp-c-portalp/RSS.xml';
+  const PT_MONTHS = { jan: 0, fev: 1, mar: 2, abr: 3, mai: 4, jun: 5, jul: 6, ago: 7, set: 8, out: 9, nov: 10, dez: 11 };
+  const parseStjDate = (s = '') => {
+    const m = s.match(/([a-zç]{3})\w*\s+(\d{1,2})\s+(\d{4})\s+(\d{2}):(\d{2})/i);
+    if (!m || PT_MONTHS[m[1].toLowerCase()] === undefined) return null;
+    return new Date(Date.UTC(+m[3], PT_MONTHS[m[1].toLowerCase()], +m[2], +m[4] + 3, +m[5])).toISOString();
+  };
+  const fetchStjInBrowser = async () => {
+    const r = await fetch(STJ_RSS);
+    if (!r.ok) throw new Error(r.status);
+    const doc = new DOMParser().parseFromString(await r.text(), 'text/xml');
+    return [...doc.querySelectorAll('item')]
+      .map((it) => ({
+        title: it.querySelector('title')?.textContent.trim(),
+        link: it.querySelector('link')?.textContent.trim(),
+        date: parseStjDate(it.querySelector('pubDate')?.textContent),
+      }))
+      .filter((it) => it.title && /^https:\/\/[\w.-]*stj\.jus\.br\//.test(it.link || ''))
+      .sort((a, b) => (b.date || '').localeCompare(a.date || ''))
+      .slice(0, 5);
+  };
+
+  const CACHE_KEY = 'aa-noticias';
+  const readCache = () => {
+    try {
+      const c = JSON.parse(sessionStorage.getItem(CACHE_KEY));
+      return c && Date.now() - c.at < 30 * 60 * 1000 && c.stf?.length && c.stj?.length ? c : null;
+    } catch { return null; }
+  };
+  const writeCache = (d) => { try { sessionStorage.setItem(CACHE_KEY, JSON.stringify({ ...d, at: Date.now() })); } catch { /* ignore */ } };
+
+  const loadNews = async () => {
+    let data = readCache();
+    if (!data) {
+      data = await fetch('/api/noticias').then((r) => (r.ok ? r.json() : {})).catch(() => ({}));
+      if (!data.stj?.length) data.stj = await fetchStjInBrowser().catch(() => []);
+      if (data.stf?.length && data.stj?.length) writeCache(data);
+    }
+    courtLists.forEach((ul) => render(ul, data[ul.dataset.court], ul.dataset.court));
+  };
+
+  /* Só busca quando a seção se aproxima da tela */
+  const newsSection = document.querySelector('[data-courts]');
+  if ('IntersectionObserver' in window && newsSection) {
+    const nio = new IntersectionObserver((entries) => {
+      if (entries.some((e) => e.isIntersecting)) { nio.disconnect(); loadNews(); }
+    }, { rootMargin: '600px 0px' });
+    nio.observe(newsSection);
+  } else {
+    loadNews();
+  }
 }
 
 /* Cookies (LGPD) + mapa sob consentimento */
