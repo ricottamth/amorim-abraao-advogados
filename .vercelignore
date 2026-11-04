@@ -1,0 +1,6 @@
+.claude
+.env*
+.vercel
+.gitignore
+README.md
+dev-server.js

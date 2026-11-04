@@ -1,0 +1,47 @@
+# Amorim Abraão Advogados — site institucional
+
+Site estático (HTML + CSS + JS, sem build) com uma função serverless para as notícias do STF/STJ.
+Para rodar localmente (Node 18+):
+
+```bash
+node dev-server.js
+```
+
+Abra http://127.0.0.1:5540. Na Vercel, `api/noticias.js` vira automaticamente o endpoint `/api/noticias`.
+
+## Notícias do STF e do STJ
+
+`api/noticias.js` lê os RSS oficiais e devolve as 5 últimas de cada tribunal (cache de 30 min na CDN):
+
+- STF: https://noticias.stf.jus.br/feed/?post_type=postsnoticias
+- STJ: https://res.stj.jus.br/hrestp-c-portalp/RSS.xml
+
+Se um feed falhar, o site mostra um link para o portal do tribunal. Para mudar a quantidade, altere `LIMIT`.
+
+## Estrutura
+
+- `index.html`: one page (Header, Hero, O Escritório + selos, 4 Áreas de atuação com modais, Como atuamos, Compromissos, Notícias, faixa de CTA, Contato com mapa, Footer)
+- `politica-de-privacidade.html`, `termos-de-uso.html`: páginas legais (texto-base, revisar)
+- `assets/js/main.js`: **configuração no topo** (WhatsApp)
+- `assets/img/`: `logo.png`, `logoNegativo.png`, favicon, OG image e fotos em webp
+
+## Pendências ([PREENCHER] / [CONFIRMAR])
+
+Abra `index.html#editar` no navegador para destacar os campos pendentes.
+
+| Item | Onde |
+|---|---|
+| Número direto do WhatsApp | `main.js` → `WHATSAPP_NUMBER` |
+| Registro OAB da sociedade | footer (`index.html`) e Política de Privacidade |
+| Horário de atendimento | Contato (`index.html`) e `openingHours` no JSON-LD |
+| Nomenclatura do selo INPI ("Propriedade Industrial" x "Intelectual") | `index.html`, seção O Escritório |
+| E-mail do encarregado de dados (DPO) | Política de Privacidade |
+| Data de publicação das páginas legais | Política e Termos |
+| Foto de fundo da faixa de CTA (Corcovado) | salvar como `assets/img/corcovado.webp` |
+| Sócios (nome, OAB, foto, currículo): seção Equipe só se enviados | — |
+| Logo em alta resolução / SVG (o atual tem 300 px) | `assets/img/logo.png` |
+
+## Regras da OAB (Provimento 205/2021)
+
+Os textos foram escritos para serem informativos: sem promessa de resultado, preços, superlativos,
+citação de clientes ou depoimentos. Mantenha esse padrão em qualquer conteúdo novo.
