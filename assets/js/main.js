@@ -4,7 +4,7 @@
    WHATSAPP_NUMBER: somente números, DDI 55 + DDD + número (ex.: '5521999998888').
      Quando preenchido, os botões abrem o WhatsApp direto com a mensagem abaixo.
      Enquanto estiver vazio, usa o link curto WHATSAPP_LINK. */
-const WHATSAPP_NUMBER = ''; // [CONFIRMAR NÚMERO DIRETO]
+const WHATSAPP_NUMBER = '5521994477404';
 const WHATSAPP_LINK = 'https://whats.link/amorimabraao';
 const WHATSAPP_MESSAGE = 'Olá! Vim pelo site da Amorim Abraão Advogados e gostaria de agendar uma consulta.';
 

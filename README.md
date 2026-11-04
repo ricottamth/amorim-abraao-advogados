@@ -34,7 +34,6 @@ Abra `index.html#editar` no navegador para destacar os campos pendentes.
 
 | Item | Onde |
 |---|---|
-| Número direto do WhatsApp | `main.js` → `WHATSAPP_NUMBER` |
 | Nota do Google (5,0 · 22 avaliações) é fixa: atualizar quando mudar | `index.html`, seção Contato |
 | Nomenclatura do selo INPI ("Propriedade Industrial" x "Intelectual") | `index.html`, seção O Escritório |
 | E-mail do encarregado de dados (DPO) | Política de Privacidade |
