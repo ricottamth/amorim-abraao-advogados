@@ -56,7 +56,7 @@ const parseRss = (xml) => xml
 const fetchFeed = async (url) => {
   const r = await fetch(url, {
     headers: { 'User-Agent': UA, Accept: 'application/rss+xml, application/xml, text/xml, */*', 'Accept-Language': 'pt-BR,pt;q=0.9' },
-    signal: AbortSignal.timeout(9000),
+    signal: AbortSignal.timeout(15000),
   });
   if (!r.ok) throw new Error(`${url} -> HTTP ${r.status}`);
   return parseRss(await r.text());
