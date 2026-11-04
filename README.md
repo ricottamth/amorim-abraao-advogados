@@ -23,7 +23,7 @@ e ficam 30 min em cache na sessão. Para mudar a quantidade, altere `LIMIT`.
 
 ## Estrutura
 
-- `index.html`: one page (Header, Hero, O Escritório + selos, 4 Áreas de atuação com modais, Como atuamos, Compromissos, Notícias, faixa de CTA, Contato com mapa, Footer)
+- `index.html`: one page (Header, Hero, O Escritório + selos, 4 Áreas de atuação com modais, Imprensa, Compromissos, Notícias, faixa de CTA, Contato com mapa, Footer)
 - `politica-de-privacidade.html`, `termos-de-uso.html`: páginas legais (texto-base, revisar)
 - `assets/js/main.js`: **configuração no topo** (WhatsApp)
 - `assets/img/`: `logo.png`, `logoNegativo.png`, favicon, OG image e fotos em webp
@@ -35,7 +35,7 @@ Abra `index.html#editar` no navegador para destacar os campos pendentes.
 | Item | Onde |
 |---|---|
 | Número direto do WhatsApp | `main.js` → `WHATSAPP_NUMBER` |
-| Horário de atendimento | Contato (`index.html`) e `openingHours` no JSON-LD |
+| Nota do Google (5,0 · 22 avaliações) é fixa: atualizar quando mudar | `index.html`, seção Contato |
 | Nomenclatura do selo INPI ("Propriedade Industrial" x "Intelectual") | `index.html`, seção O Escritório |
 | E-mail do encarregado de dados (DPO) | Política de Privacidade |
 | Data de publicação das páginas legais | Política e Termos |
