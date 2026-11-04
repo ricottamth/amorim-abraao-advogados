@@ -35,7 +35,6 @@ Abra `index.html#editar` no navegador para destacar os campos pendentes.
 | Item | Onde |
 |---|---|
 | Número direto do WhatsApp | `main.js` → `WHATSAPP_NUMBER` |
-| Registro OAB da sociedade | footer (`index.html`) e Política de Privacidade |
 | Horário de atendimento | Contato (`index.html`) e `openingHours` no JSON-LD |
 | Nomenclatura do selo INPI ("Propriedade Industrial" x "Intelectual") | `index.html`, seção O Escritório |
 | E-mail do encarregado de dados (DPO) | Política de Privacidade |
