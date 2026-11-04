@@ -146,23 +146,17 @@ em { font-style: italic; }
 .section-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px 64px; flex-wrap: wrap; margin-bottom: clamp(36px, 4.5vw, 60px); }
 
 /* O Escritório */
-.office-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: clamp(40px, 7vw, 112px); }
-.office-photo { margin-top: 40px; }
+.office-head { margin-bottom: clamp(36px, 4.5vw, 60px); }
+/* título em 2 linhas equilibradas: "Atuação abrangente," / "atendimento personalizado." */
+.office-title { max-width: none; }
+.office-title span { display: block; }
+/* foto e texto lado a lado, centralizados na mesma altura */
+.office-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: clamp(40px, 6vw, 96px); align-items: center; }
+.office-photo { margin: 0; }
 .office-photo img { width: 100%; border-radius: var(--radius); }
 .office-photo figcaption { margin-top: 12px; font-size: .75rem; color: var(--muted); letter-spacing: .02em; }
-.office-copy { display: grid; gap: 22px; align-content: start; padding-top: 8px; }
+.office-copy { display: grid; gap: 22px; }
 .office-copy > p:not(.lead) { color: var(--text); max-width: 60ch; }
-.seals { margin-top: 24px; display: grid; grid-template-columns: 1fr; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
-.seal { display: flex; align-items: center; gap: 20px; padding: 22px 0; }
-.seal + .seal { border-top: 1px solid var(--line); }
-.seal-icon {
-  flex: none; position: relative; display: grid; place-items: center; width: 56px; height: 56px;
-  border: 1px solid var(--gold); border-radius: 50%; color: var(--gold-deep); background: var(--cream);
-}
-.seal-icon::after { content: ""; position: absolute; inset: 4px; border: 1px solid rgba(232, 200, 139, .45); border-radius: 50%; }
-.seal-icon .icon { width: 26px; height: 26px; stroke-width: 1.25; }
-.seal strong { display: block; font-family: var(--serif); font-size: 1.2rem; font-weight: 600; color: var(--ink); line-height: 1.25; }
-.seal div > span { display: block; margin-top: 2px; font-size: .875rem; color: var(--muted); line-height: 1.5; }
 
 /* Áreas */
 .areas { background: var(--cream); }
