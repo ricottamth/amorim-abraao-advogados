@@ -228,16 +228,23 @@ em { font-style: italic; }
   position: relative; overflow: hidden; color: var(--cream); padding: clamp(56px, 7vw, 104px) 0;
   background:
     linear-gradient(90deg, rgba(28, 26, 27, .9) 0%, rgba(28, 26, 27, .8) 28%, rgba(28, 26, 27, .38) 50%, rgba(28, 26, 27, .72) 72%, rgba(28, 26, 27, .84) 100%),
-    url("../img/corcovado.webp?v=3") 50% 22% / cover no-repeat,
+    url("../img/corcovado.webp?v=4") 50% 22% / cover no-repeat,
     var(--ink-2);
 }
 @supports (filter: grayscale(1)) {
   /* foto em tons neutros para manter a paleta grafite + dourado */
   .cta-band { background: var(--ink-2); }
-  .cta-band::before { content: ""; position: absolute; inset: 0; background: url("../img/corcovado.webp?v=3") 50% 22% / cover no-repeat; filter: grayscale(1) contrast(1.08); }
-  .cta-band::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(28, 26, 27, .9) 0%, rgba(28, 26, 27, .8) 28%, rgba(28, 26, 27, .38) 50%, rgba(28, 26, 27, .72) 72%, rgba(28, 26, 27, .84) 100%); }
+  /* a foto nunca é ampliada além do tamanho real (1254px): fica centralizada e
+     as laterais se fundem no grafite, evitando a perda de nitidez em telas largas */
+  .cta-band::before {
+    content: ""; position: absolute; top: 0; bottom: 0; left: 50%; width: min(100%, 1254px); transform: translateX(-50%);
+    background: url("../img/corcovado.webp?v=4") 50% 22% / cover no-repeat;
+    -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 14%, #000 86%, transparent 100%);
+            mask-image: linear-gradient(90deg, transparent 0, #000 14%, #000 86%, transparent 100%);
+  }
+  .cta-band::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(28, 26, 27, .9) 0%, rgba(28, 26, 27, .78) 28%, rgba(28, 26, 27, .34) 50%, rgba(28, 26, 27, .7) 72%, rgba(28, 26, 27, .84) 100%); }
   @media (max-width: 760px) {
-    .cta-band::before { background-image: url("../img/corcovado-800.webp?v=3"); background-position: 50% 18%; }
+    .cta-band::before { -webkit-mask-image: none; mask-image: none; }
     /* no celular o texto ocupa a faixa inteira: camada uniforme para manter a leitura */
     .cta-band::after { background: rgba(28, 26, 27, .7); }
   }
