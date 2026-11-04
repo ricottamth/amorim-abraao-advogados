@@ -198,7 +198,7 @@ if (courtLists.length) {
 
 /* Cookies (LGPD) + mapa sob consentimento */
 const CONSENT_KEY = 'aa-consent';
-const MAP_SRC = 'https://www.google.com/maps?q=Praia+de+Botafogo,+501,+Botafogo,+Rio+de+Janeiro+-+RJ,+22250-000&output=embed';
+const MAP_SRC = 'https://www.google.com/maps?q=Edif%C3%ADcio+Rodolpho+de+Paoli,+Av.+Nilo+Pe%C3%A7anha,+50,+Centro,+Rio+de+Janeiro+-+RJ,+20020-906&output=embed';
 const readConsent = () => { try { return localStorage.getItem(CONSENT_KEY); } catch { return null; } };
 const saveConsent = (v) => { try { localStorage.setItem(CONSENT_KEY, v); } catch { /* navegação privada */ } };
 
@@ -207,7 +207,7 @@ const loadMap = () => {
   if (!mapBox || mapBox.classList.contains('is-loaded')) return;
   const f = document.createElement('iframe');
   f.src = MAP_SRC;
-  f.title = 'Mapa: Praia de Botafogo, 501, Botafogo, Rio de Janeiro';
+  f.title = 'Mapa: Av. Nilo Peçanha, 50, Centro, Rio de Janeiro';
   f.loading = 'lazy';
   f.referrerPolicy = 'no-referrer-when-downgrade';
   mapBox.appendChild(f);
