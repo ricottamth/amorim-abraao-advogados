@@ -226,16 +226,20 @@ em { font-style: italic; }
 .cta-band {
   position: relative; overflow: hidden; color: var(--cream); padding: clamp(56px, 7vw, 104px) 0;
   background:
-    linear-gradient(90deg, rgba(28, 26, 27, .92) 0%, rgba(28, 26, 27, .8) 55%, rgba(28, 26, 27, .68) 100%),
-    url("../img/corcovado.webp?v=2") center 30% / cover no-repeat,
+    linear-gradient(90deg, rgba(28, 26, 27, .9) 0%, rgba(28, 26, 27, .8) 28%, rgba(28, 26, 27, .38) 50%, rgba(28, 26, 27, .72) 72%, rgba(28, 26, 27, .84) 100%),
+    url("../img/corcovado.webp?v=3") 50% 22% / cover no-repeat,
     var(--ink-2);
 }
 @supports (filter: grayscale(1)) {
   /* foto em tons neutros para manter a paleta grafite + dourado */
   .cta-band { background: var(--ink-2); }
-  .cta-band::before { content: ""; position: absolute; inset: 0; background: url("../img/corcovado.webp?v=2") center 30% / cover no-repeat; filter: grayscale(1) contrast(1.1) brightness(.9); }
-  @media (max-width: 760px) { .cta-band::before { background-image: url("../img/corcovado-800.webp?v=2"); background-position: 60% 30%; } }
-  .cta-band::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(28, 26, 27, .92) 0%, rgba(28, 26, 27, .8) 55%, rgba(28, 26, 27, .68) 100%); }
+  .cta-band::before { content: ""; position: absolute; inset: 0; background: url("../img/corcovado.webp?v=3") 50% 22% / cover no-repeat; filter: grayscale(1) contrast(1.08); }
+  .cta-band::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(28, 26, 27, .9) 0%, rgba(28, 26, 27, .8) 28%, rgba(28, 26, 27, .38) 50%, rgba(28, 26, 27, .72) 72%, rgba(28, 26, 27, .84) 100%); }
+  @media (max-width: 760px) {
+    .cta-band::before { background-image: url("../img/corcovado-800.webp?v=3"); background-position: 50% 18%; }
+    /* no celular o texto ocupa a faixa inteira: camada uniforme para manter a leitura */
+    .cta-band::after { background: rgba(28, 26, 27, .7); }
+  }
 }
 .cta-inner { position: relative; z-index: 1; display: flex; justify-content: space-between; align-items: center; gap: 32px 48px; flex-wrap: wrap; }
 .cta-title { font-family: var(--serif); font-weight: 500; font-size: clamp(1.9rem, 1.2rem + 2.2vw, 2.9rem); line-height: 1.15; max-width: 20ch; }
