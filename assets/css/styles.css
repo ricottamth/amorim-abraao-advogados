@@ -279,9 +279,11 @@ em { font-style: italic; }
 /* ---------- Footer ---------- */
 .site-footer { background: var(--ink); color: rgba(250, 246, 238, .72); padding: clamp(56px, 6vw, 80px) 0 0; font-size: .9375rem; }
 .footer-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1.3fr; gap: 48px; padding-bottom: 56px; }
+/* brasão centralizado sobre o nome, como no logo */
+.footer-brand { display: flex; flex-direction: column; align-items: center; width: fit-content; text-align: center; }
 .footer-brand img { width: 64px; height: auto; }
 .footer-name { margin-top: 18px; font-family: var(--serif); font-size: 1.6rem; letter-spacing: .06em; text-transform: uppercase; color: var(--cream); line-height: 1.1; }
-.footer-name span { display: block; margin-top: 6px; font-family: var(--sans); font-size: .75rem; letter-spacing: .32em; color: var(--gold); }
+.footer-name span { display: block; margin-top: 6px; margin-right: -.32em; font-family: var(--sans); font-size: .75rem; letter-spacing: .32em; color: var(--gold); }
 .footer-title { font-family: var(--sans); font-size: .75rem; font-weight: 500; letter-spacing: .16em; text-transform: uppercase; color: var(--gold); margin: 0 0 18px; }
 .site-footer ul:not(.social) { display: grid; gap: 10px; }
 .site-footer a, .site-footer button { color: rgba(250, 246, 238, .72); text-decoration: none; text-align: left; transition: color .2s; }
@@ -402,6 +404,7 @@ body.modal-open { overflow: hidden; }
   /* rodapé: marca e contato em largura total; navegação e áreas lado a lado (evita um bloco escuro muito alto) */
   .footer-grid { grid-template-columns: 1fr 1fr; gap: 36px 24px; padding-bottom: 40px; }
   .footer-brand, .footer-grid > div:last-child { grid-column: 1 / -1; }
+  .footer-brand { justify-self: center; }
   .hero-actions .btn, .cta-actions .btn { width: 100%; }
   .cta-actions { width: 100%; }
   .hero-areas li + li::before { margin: 0 10px; }
