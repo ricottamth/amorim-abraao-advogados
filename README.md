@@ -21,6 +21,11 @@ o navegador do visitante lê o RSS do STJ diretamente (o feed libera CORS). Se a
 o site mostra um link para o portal do tribunal. As notícias só são buscadas quando a seção se aproxima da tela
 e ficam 30 min em cache na sessão. Para mudar a quantidade, altere `LIMIT`.
 
+## Cache
+
+Imagens ficam 7 dias em cache no navegador; CSS/JS revalidam a cada visita. Ao trocar uma imagem
+mantendo o nome, acrescente `?v=N` na referência (HTML/CSS) e aumente `?v=` de `styles.css`/`main.js` nas páginas.
+
 ## Estrutura
 
 - `index.html`: one page (Header, Hero, O Escritório + selos, 4 Áreas de atuação com modais, Imprensa, Compromissos, Notícias, faixa de CTA, Contato com mapa, Footer)

@@ -226,14 +226,14 @@ em { font-style: italic; }
   position: relative; overflow: hidden; color: var(--cream); padding: clamp(80px, 11vw, 152px) 0;
   background:
     linear-gradient(90deg, rgba(28, 26, 27, .92) 0%, rgba(28, 26, 27, .8) 55%, rgba(28, 26, 27, .68) 100%),
-    url("../img/corcovado.webp") center 30% / cover no-repeat,
+    url("../img/corcovado.webp?v=2") center 30% / cover no-repeat,
     var(--ink-2);
 }
 @supports (filter: grayscale(1)) {
   /* foto em tons neutros para manter a paleta grafite + dourado */
   .cta-band { background: var(--ink-2); }
-  .cta-band::before { content: ""; position: absolute; inset: 0; background: url("../img/corcovado.webp") center 30% / cover no-repeat; filter: grayscale(1) contrast(1.1) brightness(.9); }
-  @media (max-width: 760px) { .cta-band::before { background-image: url("../img/corcovado-800.webp"); background-position: 60% 30%; } }
+  .cta-band::before { content: ""; position: absolute; inset: 0; background: url("../img/corcovado.webp?v=2") center 30% / cover no-repeat; filter: grayscale(1) contrast(1.1) brightness(.9); }
+  @media (max-width: 760px) { .cta-band::before { background-image: url("../img/corcovado-800.webp?v=2"); background-position: 60% 30%; } }
   .cta-band::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(28, 26, 27, .92) 0%, rgba(28, 26, 27, .8) 55%, rgba(28, 26, 27, .68) 100%); }
 }
 .cta-inner { position: relative; z-index: 1; display: flex; justify-content: space-between; align-items: center; gap: 32px 48px; flex-wrap: wrap; }
@@ -310,19 +310,24 @@ em { font-style: italic; }
 
 /* ---------- Modal ---------- */
 .modal {
+  overflow: hidden;
   width: min(640px, calc(100% - 32px)); max-height: calc(100dvh - 48px); padding: 0; border: 0; border-top: 2px solid var(--gold);
   background: var(--paper); color: var(--text); box-shadow: 0 30px 80px rgba(28, 26, 27, .25);
 }
 .modal::backdrop { background: rgba(28, 26, 27, .55); }
-.modal[open] { animation: modal-in .35s var(--ease); }
+.modal[open] { display: flex; flex-direction: column; animation: modal-in .35s var(--ease); }
 @keyframes modal-in { from { opacity: 0; transform: translateY(12px); } }
-.modal-inner { position: relative; padding: clamp(32px, 5vw, 52px); }
-.modal-close { position: absolute; top: 16px; right: 16px; display: grid; place-items: center; width: 44px; height: 44px; color: var(--ink); }
+/* o conteúdo rola por dentro; o botão de fechar fica fixo no canto do diálogo */
+.modal-inner { overflow-y: auto; overscroll-behavior: contain; padding: clamp(32px, 5vw, 52px); }
+.modal-inner > p:not(.eyebrow) { font-size: .9688rem; line-height: 1.7; }
+.modal-inner > p:not(.eyebrow) + p { margin-top: 14px; }
+.modal-inner > .btn { margin-top: 32px; }
+.modal-close { position: absolute; z-index: 1; top: 12px; right: 12px; background: var(--paper); border-radius: 50%; display: grid; place-items: center; width: 44px; height: 44px; color: var(--ink); }
 .modal-close:hover { color: var(--gold-deep); }
 .modal-title { font-family: var(--serif); font-weight: 500; font-size: clamp(2rem, 1.5rem + 1.6vw, 2.6rem); line-height: 1.1; color: var(--ink); margin-bottom: 16px; }
-.modal-list { margin: 24px 0 32px; border-top: 1px solid var(--line); }
+.modal-list { margin: 20px 0 24px; border-top: 1px solid var(--line); }
 .modal-list li { position: relative; padding: 11px 0 11px 22px; border-bottom: 1px solid var(--line); font-size: .9375rem; color: var(--ink); }
-.modal-list li::before { content: ""; position: absolute; left: 0; top: 50%; width: 10px; height: 1px; background: var(--gold-deep); }
+.modal-list li::before { content: ""; position: absolute; left: 0; top: 1.45em; width: 10px; height: 1px; background: var(--gold-deep); }
 body.modal-open { overflow: hidden; }
 
 /* ---------- Páginas internas ---------- */
