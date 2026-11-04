@@ -36,7 +36,6 @@ Abra `index.html#editar` no navegador para destacar os campos pendentes.
 |---|---|
 | Nota do Google (5,0 · 22 avaliações) é fixa: atualizar quando mudar | `index.html`, seção Contato |
 | Nomenclatura do selo INPI ("Propriedade Industrial" x "Intelectual") | `index.html`, seção O Escritório |
-| Foto de fundo da faixa de CTA (Corcovado) | salvar como `assets/img/corcovado.webp` |
 | Sócios (nome, OAB, foto, currículo): seção Equipe só se enviados | — |
 | Logo em alta resolução / SVG (o atual tem 300 px) | `assets/img/logo.png` |
 
