@@ -219,7 +219,8 @@ em { font-style: italic; }
 .court-skel { height: 76px; background: linear-gradient(90deg, var(--cream) 0%, var(--cream-2) 50%, var(--cream) 100%) 0 0 / 200% 100%; border-bottom: 4px solid var(--paper) !important; animation: skel 1.4s linear infinite; }
 @keyframes skel { to { background-position: -200% 0; } }
 .court-empty { padding: 20px 0; font-size: .9375rem; color: var(--muted); }
-.court-empty a { color: var(--gold-deep); }
+/* o link herdava o grid das linhas de notícia (.court-list a) e quebrava em pedaços */
+.court-empty a { display: inline; padding: 0; color: var(--gold-deep); text-decoration: underline; text-underline-offset: 3px; }
 .court-source { grid-column: 1 / -1; margin-top: 16px; font-size: .75rem; color: var(--muted); }
 
 /* Faixa CTA */

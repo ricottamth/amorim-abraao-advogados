@@ -19,7 +19,8 @@ Abra http://127.0.0.1:5540. Na Vercel, `api/noticias.js` vira automaticamente o 
 O firewall do STJ bloqueia servidores em nuvem (Vercel), então, quando a API volta sem notícias do STJ,
 o navegador do visitante lê o RSS do STJ diretamente (o feed libera CORS). Se ainda assim falhar,
 o site mostra um link para o portal do tribunal. As notícias só são buscadas quando a seção se aproxima da tela
-e ficam 30 min em cache na sessão. Para mudar a quantidade, altere `LIMIT`.
+e ficam 30 min em cache na sessão. Às vezes o próprio feed do STJ é publicado sem itens por alguns minutos; nesse caso o navegador
+mostra a última lista boa que já recebeu (guardada por até 14 dias em `localStorage`). Para mudar a quantidade, altere `LIMIT`.
 
 ## Cache
 

@@ -116,7 +116,7 @@ if (courtLists.length) {
     if (!items?.length) {
       const li = document.createElement('li');
       li.className = 'court-empty';
-      li.innerHTML = `Não foi possível carregar as notícias agora. <a href="${COURT_URLS[court]}" target="_blank" rel="noopener">Acesse o portal do ${court.toUpperCase()}</a>.`;
+      li.innerHTML = `As notícias não estão disponíveis no momento. <a href="${COURT_URLS[court]}" target="_blank" rel="noopener">Acesse o portal do ${court.toUpperCase()}</a>`;
       ul.append(li);
       return;
     }
@@ -172,6 +172,15 @@ if (courtLists.length) {
   };
   const writeCache = (d) => { try { sessionStorage.setItem(CACHE_KEY, JSON.stringify({ ...d, at: Date.now() })); } catch { /* ignore */ } };
 
+  const LAST_GOOD_TTL = 14 * 24 * 60 * 60 * 1000;
+  const saveLastGood = (k, items) => { try { localStorage.setItem(`aa-noticias-${k}`, JSON.stringify({ at: Date.now(), items })); } catch { /* ignore */ } };
+  const readLastGood = (k) => {
+    try {
+      const c = JSON.parse(localStorage.getItem(`aa-noticias-${k}`));
+      return c && Date.now() - c.at < LAST_GOOD_TTL && Array.isArray(c.items) ? c.items : [];
+    } catch { return []; }
+  };
+
   const loadNews = async () => {
     let data = readCache();
     if (!data) {
@@ -179,6 +188,12 @@ if (courtLists.length) {
       if (!data.stj?.length) data.stj = await fetchStjInBrowser().catch(() => []);
       if (data.stf?.length && data.stj?.length) writeCache(data);
     }
+    /* Se um tribunal vier vazio (o feed do STJ às vezes é publicado sem itens),
+       mostra a última lista boa que este navegador já recebeu, de até 14 dias. */
+    ['stf', 'stj'].forEach((k) => {
+      if (data[k]?.length) saveLastGood(k, data[k]);
+      else data[k] = readLastGood(k);
+    });
     courtLists.forEach((ul) => render(ul, data[ul.dataset.court], ul.dataset.court));
   };
 
