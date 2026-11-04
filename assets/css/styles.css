@@ -147,9 +147,8 @@ em { font-style: italic; }
 
 /* O Escritório */
 .office-head { margin-bottom: clamp(36px, 4.5vw, 60px); }
-/* título em 2 linhas equilibradas: "Atuação abrangente," / "atendimento personalizado." */
+/* título em uma linha no desktop; em telas menores quebra de forma equilibrada */
 .office-title { max-width: none; }
-.office-title span { display: block; }
 /* foto e texto lado a lado, centralizados na mesma altura */
 .office-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: clamp(40px, 6vw, 96px); align-items: center; }
 .office-photo { margin: 0; }
