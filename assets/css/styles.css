@@ -20,7 +20,7 @@
 
   --container: 1320px;
   --gutter: clamp(16px, 4vw, 32px);
-  --section: clamp(64px, 7.5vw, 112px);
+  --section: clamp(48px, 5.5vw, 84px);
   --header-h: 100px;
   --radius: 2px;
   --ease: cubic-bezier(.22, .61, .36, 1);
