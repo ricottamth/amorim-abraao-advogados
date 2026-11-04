@@ -44,5 +44,73 @@
     "api/noticias.js": {
       "maxDuration": 20
     }
-  }
+  },
+  "redirects": [
+    {
+      "source": "/:path(.*)",
+      "has": [
+        {
+          "type": "host",
+          "value": "amorimabraao.com.br"
+        }
+      ],
+      "destination": "https://www.amorimabraao.com.br/:path",
+      "permanent": true
+    },
+    {
+      "source": "/institucional/escritorio",
+      "destination": "/#escritorio",
+      "permanent": true
+    },
+    {
+      "source": "/institucional/responsabilidadeSocial",
+      "destination": "/#escritorio",
+      "permanent": true
+    },
+    {
+      "source": "/institucional",
+      "destination": "/#escritorio",
+      "permanent": true
+    },
+    {
+      "source": "/areasAtuacao/:rest*",
+      "destination": "/#atuacao",
+      "permanent": true
+    },
+    {
+      "source": "/areasAtuacao",
+      "destination": "/#atuacao",
+      "permanent": true
+    },
+    {
+      "source": "/midia",
+      "destination": "/#imprensa",
+      "permanent": true
+    },
+    {
+      "source": "/noticias",
+      "destination": "/#noticias",
+      "permanent": true
+    },
+    {
+      "source": "/informativo",
+      "destination": "/#noticias",
+      "permanent": true
+    },
+    {
+      "source": "/contato",
+      "destination": "/#contato",
+      "permanent": true
+    },
+    {
+      "source": "/links",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/parceiros",
+      "destination": "/",
+      "permanent": true
+    }
+  ]
 }
