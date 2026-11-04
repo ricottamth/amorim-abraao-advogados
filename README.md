@@ -35,7 +35,6 @@ Abra `index.html#editar` no navegador para destacar os campos pendentes.
 | Item | Onde |
 |---|---|
 | Nota do Google (5,0 · 22 avaliações) é fixa: atualizar quando mudar | `index.html`, seção Contato |
-| Nomenclatura do selo INPI ("Propriedade Industrial" x "Intelectual") | `index.html`, seção O Escritório |
 | Sócios (nome, OAB, foto, currículo): seção Equipe só se enviados | — |
 | Logo em alta resolução / SVG (o atual tem 300 px) | `assets/img/logo.png` |
 
