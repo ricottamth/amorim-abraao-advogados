@@ -182,16 +182,18 @@ if (courtLists.length) {
     courtLists.forEach((ul) => render(ul, data[ul.dataset.court], ul.dataset.court));
   };
 
-  /* Só busca quando a seção se aproxima da tela */
+  /* Busca quando a seção se aproxima da tela ou, no máximo, 4 s após o carregamento da página */
+  let started = false;
+  const start = () => { if (!started) { started = true; loadNews(); } };
   const newsSection = document.querySelector('[data-courts]');
   if ('IntersectionObserver' in window && newsSection) {
     const nio = new IntersectionObserver((entries) => {
-      if (entries.some((e) => e.isIntersecting)) { nio.disconnect(); loadNews(); }
+      if (entries.some((e) => e.isIntersecting)) { nio.disconnect(); start(); }
     }, { rootMargin: '600px 0px' });
     nio.observe(newsSection);
-  } else {
-    loadNews();
   }
+  const later = () => setTimeout(start, 4000);
+  if (document.readyState === 'complete') later(); else window.addEventListener('load', later, { once: true });
 }
 
 /* Cookies (LGPD) + mapa sob consentimento */
