@@ -116,7 +116,12 @@ if (courtLists.length) {
     if (!items?.length) {
       const li = document.createElement('li');
       li.className = 'court-empty';
-      li.innerHTML = `As notícias não estão disponíveis no momento. <a href="${COURT_URLS[court]}" target="_blank" rel="noopener">Acesse o portal do ${court.toUpperCase()}</a>`;
+      const link = document.createElement('a');
+      link.href = COURT_URLS[court];
+      link.target = '_blank';
+      link.rel = 'noopener';
+      link.textContent = `Acesse o portal do ${court.toUpperCase()}`;
+      li.append('As notícias não estão disponíveis no momento. ', link);
       ul.append(li);
       return;
     }

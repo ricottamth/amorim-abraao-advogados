@@ -16,8 +16,12 @@ http.createServer((req, res) => {
   const url = new URL(req.url, `http://${req.headers.host}`);
   if (url.pathname === '/api/noticias') return noticias(req, res);
 
-  let file = path.normalize(path.join(ROOT, decodeURIComponent(url.pathname)));
-  if (!file.startsWith(ROOT)) { res.statusCode = 403; return res.end(); }
+  let rel;
+  try { rel = decodeURIComponent(url.pathname); } catch { res.statusCode = 400; return res.end(); }
+  let file = path.resolve(ROOT, '.' + path.posix.normalize('/' + rel));
+  // só serve arquivos de dentro da pasta do projeto
+  const inside = path.relative(ROOT, file);
+  if (inside.startsWith('..') || path.isAbsolute(inside)) { res.statusCode = 403; return res.end(); }
   if (fs.existsSync(file) && fs.statSync(file).isDirectory()) file = path.join(file, 'index.html');
   fs.readFile(file, (err, buf) => {
     if (err) { res.statusCode = 404; return res.end('Not found'); }
